@@ -4,6 +4,12 @@ async function dummyChart() {
   await getDummyData()
 
 const ctx = document.getElementById('myChart').getContext('2d');
+//document.getElementById('lastRefresh').textContent = Date.now();
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
+document.getElementById('lastRefresh').textContent = dateTime;
 
 const chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -35,7 +41,9 @@ const chart = new Chart(ctx, {
     }
 })}
 
-dummyChart()
+dummyChart();
+
+setInterval(dummyChart, 10000);
 
 
 //Fetch Data from API
